@@ -11,6 +11,9 @@ export default {
           "2xl": "1500px",
         },
       },
+      boxShadow: {
+        base: "rgba(17, 17, 26, 0.1) 0px 0px 16px",
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

@@ -8,26 +8,29 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-import { ThemeProvider } from "@/components/ui/theme-provider";
 import * as z from "zod";
+import { ThemeProvider } from "@/components/ui/theme-provider";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import axios from "@/api";
 import { Link } from "react-router-dom";
-
 import { Toaster, toast } from "sonner";
 
 const formSchema = z.object({
   username: z.string().min(3).max(50),
+  firstname: z.string().min(4).max(50),
+  lastname: z.string().min(4).max(50),
   password: z.string().min(6),
 });
 
-const Login = () => {
+const SignUp = () => {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      fname: "",
+      lname: "",
       username: "",
       password: "",
     },
@@ -35,7 +38,7 @@ const Login = () => {
 
   const handleSubmit = (data) => {
     axios
-      .post("/admins/sign-in", data)
+      .post("/admins/sign-up", data)
       .then((res) => {
         toast.success(res.data.msg);
       })
@@ -55,6 +58,34 @@ const Login = () => {
               className="flex flex-col items-center justify-between gap-4 w-[400px]"
               onSubmit={form.handleSubmit(handleSubmit)}
             >
+              <FormField
+                control={form.control}
+                name="fname"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormLabel>Firstname</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Firsname" {...field} type="text" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="lname"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormLabel>Lastname</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Lastname" {...field} type="text" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
               <FormField
                 control={form.control}
                 name="username"
@@ -92,9 +123,9 @@ const Login = () => {
               </Button>
             </form>
             <p className="text-sm text-gray-400 mt-3 flex gap-2">
-              Don’t have an account yet?
+              Already have an account?
               <Link className="text-[#0f172a]" to="/sign-up">
-                Sign up here
+                Login here
               </Link>
             </p>
           </Form>
@@ -104,4 +135,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
