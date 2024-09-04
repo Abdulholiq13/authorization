@@ -124,7 +124,7 @@ const SignUp = () => {
             </form>
             <p className="text-sm text-gray-400 mt-3 flex gap-2">
               Already have an account?
-              <Link className="text-[#0f172a]" to="/sign-up">
+              <Link className="text-[#0f172a]" to="/login">
                 Login here
               </Link>
             </p>
