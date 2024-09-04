@@ -15,9 +15,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import axios from "@/api";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { Toaster, toast } from "sonner";
+import { useDispatch } from "react-redux";
 
 const formSchema = z.object({
   username: z.string().min(3).max(50),
@@ -25,6 +26,8 @@ const formSchema = z.object({
 });
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -38,6 +41,8 @@ const Login = () => {
       .post("/admins/sign-in", data)
       .then((res) => {
         toast.success(res.data.msg);
+        dispatch({ type: "LOGIN", payload: res.data.payload.token });
+        navigate("/");
       })
       .catch((res) => {
         toast.error(res.response.data.msg);
