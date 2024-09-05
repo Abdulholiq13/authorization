@@ -1,13 +1,19 @@
-import React, { memo } from "react";
+import React from "react";
+import { MdDelete } from "react-icons/md";
 
-const BlogCard = ({ title, desc, author }) => {
+const BlogCard = ({ id, title, desc, author, delete: handleDelete }) => {
   return (
-    <div className="p-4 text-left border border-gray-500 rounded-lg min-w-[200px]">
-      <h3 className="text-2xl">Hech</h3>
-      <p className="text-sm uppercase">{desc}</p>
-      <p className="text-xs text-gray-500">{author}</p>
+    <div className="p-3 border border-gray-500 rounded-md min-w-[200px]">
+      <h2 className="text-2xl">{title}</h2>
+      <p className="text-sm">{desc}</p>
+      <p className="text-xs">{author}</p>
+      <div className="flex justify-end">
+        <button className="p-2 border rounded-lg" onClick={() => handleDelete(id)}>
+          <MdDelete className="text-lg" />
+        </button>
+      </div>
     </div>
   );
 };
 
-export default memo(BlogCard);
+export default BlogCard;

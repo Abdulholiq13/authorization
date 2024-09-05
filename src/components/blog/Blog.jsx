@@ -9,10 +9,6 @@ const Blog = () => {
   const [reload, setReload] = useState(false);
   const { data, loading, error } = useFetch("/blogs", { limit: 30 }, [reload]);
 
-  const blogPost = data?.payload.map((item) => (
-    <BlogCard key={item._id} title={item.title} desc={item.desc} author={item.userId.fname} />
-  ));
-
   const handleCreate = () => {
     console.log("Create blog post");
   };
@@ -25,6 +21,10 @@ const Blog = () => {
       console.error("Error deleting blog post:", error);
     }
   };
+
+  const blogPost = data?.payload.map((item) => (
+    <BlogCard key={item._id} id={item._id} title={item.title} desc={item.desc} author={item.userId.fname} delete={handleDelete} />
+  ));
 
   return (
     <div className="container overflow-y-hidden">
