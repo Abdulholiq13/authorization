@@ -12,6 +12,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { Toaster, toast } from "sonner";
 import { useDispatch } from "react-redux";
+import { memo } from "react";
 
 const formSchema = z.object({
   username: z.string().min(3).max(50),
@@ -98,4 +99,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default memo(Login);

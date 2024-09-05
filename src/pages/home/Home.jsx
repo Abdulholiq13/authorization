@@ -1,4 +1,5 @@
 import Blog from "@/components/blog/Blog";
+import { memo } from "react";
 
 const Home = () => {
   return (
@@ -8,4 +9,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default memo(Home);

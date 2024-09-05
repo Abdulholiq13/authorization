@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import axios from "@/api";
 import { Link } from "react-router-dom";
 import { Toaster, toast } from "sonner";
+import { memo } from "react";
 
 const formSchema = z.object({
   username: z.string().min(3).max(50),
@@ -140,4 +141,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default memo(SignUp);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
 import { useDispatch } from "react-redux";
@@ -64,4 +64,4 @@ function PackageIcon(props) {
   );
 }
 
-export default Header;
+export default memo(Header);
