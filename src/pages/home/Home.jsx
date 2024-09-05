@@ -1,5 +1,11 @@
+import Blog from "@/components/blog/Blog";
+
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <>
+      <Blog />
+    </>
+  );
 };
 
 export default Home;

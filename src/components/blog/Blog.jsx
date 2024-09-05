@@ -1,12 +1,21 @@
+import { useFetch } from "@/hooks/useFetch";
+import { Link } from "react-router-dom";
 import BlogCard from "./BlogCard";
-import { useSelector } from "react-redux";
 
 const Blog = () => {
-  const blog = useSelector((state) => state.blog);
-  console.log(blog);
+  const { data, loading } = useFetch("/blogs", { limit: 10 });
+
+  const blogPost = data?.payload.map((item) => (
+    <BlogCard key={item._id} title={item.title} desc={item.desc} author={item.userId.fname} />
+  ));
+
   return (
-    <div>
-      <BlogCard title={blog/} />
+    <div className="container overflow-y-hidden">
+      <div className="py-5">
+        <div className="grid grid-cols-2">
+          <div className="overflow-y-scroll">{blogPost}</div>
+        </div>
+      </div>
     </div>
   );
 };

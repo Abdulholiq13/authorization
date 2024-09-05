@@ -1,12 +1,5 @@
 "use client";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 
 import * as z from "zod";
 import { ThemeProvider } from "@/components/ui/theme-provider";
@@ -20,8 +13,9 @@ import { Toaster, toast } from "sonner";
 
 const formSchema = z.object({
   username: z.string().min(3).max(50),
-  firstname: z.string().min(4).max(50),
-  lastname: z.string().min(4).max(50),
+  fname: z.string().min(4).max(50),
+  phone: z.string().min(9).max(30),
+  // lname: z.string().min(4).max(50),
   password: z.string().min(6),
 });
 
@@ -31,6 +25,7 @@ const SignUp = () => {
     defaultValues: {
       fname: "",
       lname: "",
+      phone: "",
       username: "",
       password: "",
     },
@@ -38,12 +33,12 @@ const SignUp = () => {
 
   const handleSubmit = (data) => {
     axios
-      .post("/admins/sign-up", data)
+      .post("/sign-up", data)
       .then((res) => {
         toast.success(res.data.msg);
       })
-      .catch((res) => {
-        toast.error(res.response.data.msg);
+      .catch((error) => {
+        toast.error(error.response?.data?.msg);
       });
   };
 
@@ -65,7 +60,7 @@ const SignUp = () => {
                   <FormItem className="w-full">
                     <FormLabel>Firstname</FormLabel>
                     <FormControl>
-                      <Input placeholder="Firsname" {...field} type="text" />
+                      <Input placeholder="Firstname" {...field} type="text" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -80,6 +75,20 @@ const SignUp = () => {
                     <FormLabel>Lastname</FormLabel>
                     <FormControl>
                       <Input placeholder="Lastname" {...field} type="text" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormLabel>Phone</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Phone" {...field} type="phone" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -107,11 +116,7 @@ const SignUp = () => {
                   <FormItem className="w-full">
                     <FormLabel>Password</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="Password"
-                        {...field}
-                        type="password"
-                      />
+                      <Input placeholder="Password" {...field} type="password" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

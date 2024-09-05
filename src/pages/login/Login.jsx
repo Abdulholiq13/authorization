@@ -1,12 +1,5 @@
 "use client";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import * as z from "zod";
@@ -81,11 +74,7 @@ const Login = () => {
                   <FormItem className="w-full">
                     <FormLabel>Password</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="Password"
-                        {...field}
-                        type="password"
-                      />
+                      <Input placeholder="Password" {...field} type="password" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
