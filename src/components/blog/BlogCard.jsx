@@ -1,4 +1,3 @@
-import React from "react";
 import { MdDelete } from "react-icons/md";
 
 const BlogCard = ({ id, title, desc, author, delete: handleDelete }) => {
@@ -7,11 +6,13 @@ const BlogCard = ({ id, title, desc, author, delete: handleDelete }) => {
       <h2 className="text-2xl">{title}</h2>
       <p className="text-sm">{desc}</p>
       <p className="text-xs">{author}</p>
-      <div className="flex justify-end">
-        <button className="p-2 border rounded-lg" onClick={() => handleDelete(id)}>
-          <MdDelete className="text-lg" />
-        </button>
-      </div>
+      {handleDelete && (
+        <div className="flex justify-end">
+          <button className="p-2 border rounded-lg" onClick={() => handleDelete(id)}>
+            <MdDelete className="text-lg" />
+          </button>
+        </div>
+      )}
     </div>
   );
 };

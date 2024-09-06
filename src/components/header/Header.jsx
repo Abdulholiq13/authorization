@@ -1,25 +1,18 @@
 import React, { memo } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "../ui/button";
-import { useDispatch } from "react-redux";
 
 function Header() {
-  const dispatch = useDispatch();
   return (
-    <nav className="sticky inset-x-0 top-0 z-50 bg-white shadow dark:bg-gray-950">
+    <nav className="sticky inset-x-0 top-0 z-50 bg-white py-2 shadow dark:bg-gray-950">
       <div className="container px-4 md:px-6">
-        <div className="flex h-14 items-center">
-          <Link
-            to={"/"}
-            className="mr-auto flex items-center gap-2 text-lg font-semibold"
-            // prefetch={false}
-          >
+        <div className="flex h-14 items-center justify-center w-full">
+          <Link to={"/"} className="flex items-center gap-2 text-lg font-semibold">
             <PackageIcon className="w-5 h-5" />
             <span>Bloging</span>
           </Link>
-          <nav className="ml-auto flex items-center space-x-4">
+          {/* <nav className="ml-auto flex items-center space-x-4">
             <Link
-              href="#"
+              to={"/"}
               className="font-medium text-sm border-b-2 border-transparent transition-colors hover:text-gray-900 hover:border-gray-100 dark:hover:text-gray-50 dark:hover:border-gray-800"
               // prefetch={false}
             >
@@ -32,10 +25,7 @@ function Header() {
             >
               Blog
             </Link>
-          </nav>
-          <Button className="ml-5" onClick={() => dispatch({ type: "LOGOUT" })}>
-            Log Out
-          </Button>
+          </nav> */}
         </div>
       </div>
     </nav>
